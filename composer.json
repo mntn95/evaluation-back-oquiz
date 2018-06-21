@@ -1,0 +1,20 @@
+{
+    "name": "mntn/oquiz",
+    "description": "eval back end oquiz",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Mathieu NGUYEN",
+            "email": "mattngtn@gmail.com"
+        }
+    ],
+    "require": {
+        "composer/composer": "^1.6",
+        "symfony/var-dumper": "^3.4",
+        "league/plates": "^3.3",
+        "altorouter/altorouter": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {"oQuiz\\": "app/"}
+        }
+}
