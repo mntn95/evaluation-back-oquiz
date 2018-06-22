@@ -3,7 +3,7 @@
         <nav>
            <ul>
               <li><a href="">Bonjour Chuck</a></li>
-              <li><a href="">Accueil</a></li>
+              <li><a href="<?= $router->generate('main_home') ?>">Accueil</a></li>
               <li><a href="<?= $router->generate('user_account') ?>">Mon compte</a></li>
               <li><a href="">Deconnexion</a></li>
            </ul>

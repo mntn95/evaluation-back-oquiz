@@ -35,7 +35,6 @@ use PDO;
     public static function find(int $id_author) {
         $quizByID = parent::find($id_author);
 
-        dump($quizByID);
         return $quizByID;
     }
     protected function insert() : bool {

@@ -34,6 +34,8 @@ class Application {
         // Home (example)
         $this->router->map('GET', '/', 'MainController#indexAction', 'main_home');
         $this->router->map('GET', '/user', 'UserController#myAccount', 'user_account');
+        // $this->router->map('GET', '/quiz/[i:id]', 'UserController#myAccount', 'user_account');
+
     }
     
     // créer la méthode run qui doit afficher un message (peu importe) qui permet de vérifier qu'elle est bien éxécutée
