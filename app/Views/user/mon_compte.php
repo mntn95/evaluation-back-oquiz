@@ -1,4 +1,5 @@
 <?php $this->layout('layout', ['title' => 'Mon compte']) ?>
+<h2>Mon compte</h2>
     <div class="d-flex flex-wrap">
     <?php foreach ($quizOfAuthor as $currentList) : ?>
       <div class="card" style="width: 18rem;">

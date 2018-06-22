@@ -28,15 +28,18 @@ use PDO;
 
 
 
-    const TABLE_NAME = 'quizzes';
 
 
 
-    public static function find(int $id_author) {
-        $quizByID = parent::find($id_author);
+    // public static function find(int $id_author) {
+    //     $quizByID = parent::find($id_author);
 
-        return $quizByID;
+    //     return $quizByID;
+    // }
+    protected function find() : bool {
+
     }
+
     protected function insert() : bool {
 
     }

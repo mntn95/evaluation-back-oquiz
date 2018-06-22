@@ -34,7 +34,7 @@ class Application {
         // Home (example)
         $this->router->map('GET', '/', 'MainController#indexAction', 'main_home');
         $this->router->map('GET', '/user', 'UserController#myAccount', 'user_account');
-        // $this->router->map('GET', '/quiz/[i:id]', 'UserController#myAccount', 'user_account');
+        $this->router->map('GET', '/quiz', 'UserController#quizDetail', 'user_quizdetail');
 
     }
     

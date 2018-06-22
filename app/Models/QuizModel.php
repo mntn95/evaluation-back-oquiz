@@ -41,8 +41,36 @@ use PDO;
     }
 
     public static function find(int $id_author) {
-
+        $sql = '
+            SELECT *
+            FROM '.static::TABLE_NAME.'
+            WHERE id_author = :id_author
+        ';
+        $pdo = Database::getPDO();
+        // J'utilise "prepare" !!
+        $pdoStatement = $pdo->prepare($sql);
+        // Je fais les bindValue
+        $pdoStatement->bindValue(':id_author', $id_author, PDO::PARAM_INT);
+        
+        // J'exécute ma requete
+        $pdoStatement->execute();
+        
+        // Je récupère le résultat sous forme d'objet
+        // !Attention! Objet sous forme FQCN
+        // self::class => a pour valeur le FQCN de la classe actuelle
+        $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
+        
+        return $result;
     }
+
+    public static function findById() {
+        $sql = '
+        SELECT *
+        FROM '.static::TABLE_NAME.'
+        WHERE id = :id
+    ';
+    }
+
     protected function insert() : bool {
 
     }

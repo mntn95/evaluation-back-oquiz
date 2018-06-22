@@ -45,26 +45,6 @@ abstract class CoreModel {
     // Pour être certain que les 4 méthodes du CRUD soient implémentées parmi les enfants de CoreModel
     // Je déclare des méthodes abstraites
     public static function find(int $id_author) {
-        $sql = '
-            SELECT *
-            FROM '.static::TABLE_NAME.'
-            WHERE id_author = :id_author
-        ';
-        $pdo = Database::getPDO();
-        // J'utilise "prepare" !!
-        $pdoStatement = $pdo->prepare($sql);
-        // Je fais les bindValue
-        $pdoStatement->bindValue(':id_author', $id_author, PDO::PARAM_INT);
-        
-        // J'exécute ma requete
-        $pdoStatement->execute();
-        
-        // Je récupère le résultat sous forme d'objet
-        // !Attention! Objet sous forme FQCN
-        // self::class => a pour valeur le FQCN de la classe actuelle
-        $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
-        
-        return $result;
     }
 
     abstract protected function insert() : bool;
