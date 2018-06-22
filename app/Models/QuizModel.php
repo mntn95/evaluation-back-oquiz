@@ -63,12 +63,23 @@ use PDO;
         return $result;
     }
 
-    public static function findById() {
+    public static function findById(int $id) {
         $sql = '
         SELECT *
         FROM '.static::TABLE_NAME.'
         WHERE id = :id
-    ';
+        ';
+        $pdo = Database::getPDO();
+
+            $pdoStatement = $pdo->prepare($sql);
+
+            $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
+
+            $pdoStatement->execute();
+
+            $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
+            dump($result);
+            return $result;
     }
 
     protected function insert() : bool {

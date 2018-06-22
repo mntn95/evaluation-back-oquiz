@@ -33,9 +33,8 @@ class Application {
     public function defineRoutes() {
         // Home (example)
         $this->router->map('GET', '/', 'MainController#indexAction', 'main_home');
-        $this->router->map('GET', '/user', 'UserController#myAccount', 'user_account');
-        $this->router->map('GET', '/quiz', 'UserController#quizDetail', 'user_quizdetail');
-
+        $this->router->map('GET', '/user', 'QuizController#myAccount', 'user_account');
+        $this->router->map('GET', '/quiz/[i:id]', 'QuizController#quizDetail', 'quiz_quizdetail');
     }
     
     // créer la méthode run qui doit afficher un message (peu importe) qui permet de vérifier qu'elle est bien éxécutée

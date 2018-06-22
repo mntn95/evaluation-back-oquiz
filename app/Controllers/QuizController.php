@@ -5,8 +5,10 @@
 // au final => app/Controllers/
 namespace oQuiz\Controllers;
 use oQuiz\Models\QuizModel;
+use oQuiz\Models\QuestionModel;
 
-class UserController extends CoreController {
+
+class QuizController extends CoreController {
     public function myAccount() {
         // Je veux les quiz de mon compte
         $quizByAuthorID = QuizModel::find(1);
@@ -17,13 +19,19 @@ class UserController extends CoreController {
         $this->show('user/mon_compte', $dataToViews);
     }
 
-    public function quizDetail() {
+    public function quizDetail($urlParams) {
+        $id = $urlParams['id'];
+
         // Je veux un quiz depuis son ID
-        $quizByID = QuizModel::findById(1);
-        
+        $quizById = QuizModel::findById($id);
+        $questionByQuizId = QuestionModel::findById($id);
+
         $dataToViews = [
-            'quizOfAuthor' => $quizByID
+            'quizOfAuthor' => $quizById,
+            'questionsOfQuiz' => $questionByQuizId
         ];
-        $this->show('user/mon_compte', $dataToViews);
+        $this->show('front/quiz', $dataToViews);
     }
 }
+
+
