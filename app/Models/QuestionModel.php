@@ -30,17 +30,19 @@ use PDO;
 
     const TABLE_NAME = 'questions';
 
-    public static function findById(int $id_quiz) {
+    
+
+    public static function findById(int $id) {
         $sql = '
         SELECT *
         FROM '.static::TABLE_NAME.'
-        WHERE id_quiz = :id_quiz
+        WHERE id_quiz = :id
         ';
         $pdo = Database::getPDO();
 
             $pdoStatement = $pdo->prepare($sql);
 
-            $pdoStatement->bindValue(':id_quiz', $id_quiz, PDO::PARAM_INT);
+            $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
 
             $pdoStatement->execute();
 

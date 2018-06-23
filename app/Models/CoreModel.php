@@ -7,7 +7,7 @@ use PDO;
 
 // abstract => interdiction de créer une instance de cette classe
 abstract class CoreModel {
-    
+    protected $id;
     // self => la classe dans laquelle est écrit le mot clé "self"
     // static => la classe courante = la classe depuis laquelle on a appelé la méthode
     // parent => la classe parente (dont on a hérité)

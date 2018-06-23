@@ -78,7 +78,6 @@ use PDO;
             $pdoStatement->execute();
 
             $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
-            dump($result);
             return $result;
     }
 

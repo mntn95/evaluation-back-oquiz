@@ -25,13 +25,30 @@ class QuizController extends CoreController {
         // Je veux un quiz depuis son ID
         $quizById = QuizModel::findById($id);
         $questionByQuizId = QuestionModel::findById($id);
-
+        $bigProps = [];
+        foreach($questionByQuizId as $key => $value) {
+            $prop1 = $questionByQuizId[$key];
+            $prop2 = $questionByQuizId[$key];
+            $prop3 = $questionByQuizId[$key];
+            $prop4 = $questionByQuizId[$key];
+            
+            $props = [
+                'propo1' => $prop1->getProp1(),
+                'propo2' => $prop2->getProp2(),
+                'propo3' => $prop3->getProp3(),
+                'propo4' => $prop4->getProp4()
+            ];
+            shuffle($props);
+            array_push($bigProps, $props);
+        };
         $dataToViews = [
             'quizOfAuthor' => $quizById,
-            'questionsOfQuiz' => $questionByQuizId
+            'questionsOfQuiz' => $questionByQuizId,
+            'bigProps' => $bigProps
         ];
+        dump($bigProps);
+
         $this->show('front/quiz', $dataToViews);
     }
+
 }
-
-
