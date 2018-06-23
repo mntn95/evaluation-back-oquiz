@@ -4,6 +4,20 @@ var app = {
 
     // Interception du form de connexion
     $('#formSignin').on('submit', app.formSigninSubmit);
+    // gestion du submit du quiz
+    $('#checkQuiz').on('click', app.quizSubmit);
+
+  },
+
+  quizSubmit: function(e) {
+    e.preventDefault();
+
+    var formData = $('.questionForm').serialize();
+
+    console.log(formData);
+
+    // var checkBox =
+    
   },
 
   formSigninSubmit: function(evt) {

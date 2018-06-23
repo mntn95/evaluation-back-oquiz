@@ -3,37 +3,18 @@
 <h5 class="card-title"><?= $quizOfAuthor[0]->getDescription() ?></h5>
 <div class="d-flex flex-wrap">
     <?php foreach ($questionsOfQuiz as $key => $value) : ?>
-        <div class="card col-3 m-1" style="width: 18rem;">
-            <div class="card-body">
+        <div class="card col-3 m-1">
+            <div class="card-body bg-light">
                 <p class="card-text">
                     <?= $this->e($questionsOfQuiz[$key]->getQuestion()) ?>
                 </p>
                 
                 <?php if ($connectedUser !== false) : ?>
-                <form>
-                    <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                       <?= implode($questionsOfQuiz[$key]->getProp1()) ?>
-                    </label>
-                    </div>
-                    <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                       <?= implode($questionsOfQuiz[$key]->getProp2()) ?>
-                    </label>
-                    </div><div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                       <?= implode($questionsOfQuiz[$key]->getProp3()) ?>
-                    </label>
-                    </div><div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                       <?= implode($questionsOfQuiz[$key]->getProp4()) ?>
-                    </label>
-                    </div>
-                </form>
+                <?= $this->insert('partials/list-form', [
+                    'quizOfAuthor' => $quizOfAuthor,
+                    'questionsOfQuiz' => $questionsOfQuiz,
+                    'key' => $key
+                ]) ?>
                 <?php else : ?>
                 <ol>
                     <li><?= implode($questionsOfQuiz[$key]->getProp1()) ?></li>
@@ -46,3 +27,4 @@
         </div>
     <?php endforeach; ?>
 </div>
+<button type="button" class="btn btn-primary btn-lg btn-block m-2" id="checkQuiz">OK</button>
