@@ -11,7 +11,7 @@ use oQuiz\Models\QuestionModel;
 class QuizController extends CoreController {
     public function myAccount() {
         // Je veux les quiz de mon compte
-        $quizByAuthorID = QuizModel::find(1);
+        $quizByAuthorID = QuizModel::findByAuthor(1);
         
         $dataToViews = [
             'quizOfAuthor' => $quizByAuthorID
@@ -21,32 +21,15 @@ class QuizController extends CoreController {
 
     public function quizDetail($urlParams) {
         $id = $urlParams['id'];
-
+        // $qId = QuestionModel::getId();
         // Je veux un quiz depuis son ID
         $quizById = QuizModel::findById($id);
         $questionByQuizId = QuestionModel::findById($id);
-        $bigProps = [];
-        foreach($questionByQuizId as $key => $value) {
-            $prop1 = $questionByQuizId[$key];
-            $prop2 = $questionByQuizId[$key];
-            $prop3 = $questionByQuizId[$key];
-            $prop4 = $questionByQuizId[$key];
-            
-            $props = [
-                'propo1' => $prop1->getProp1(),
-                'propo2' => $prop2->getProp2(),
-                'propo3' => $prop3->getProp3(),
-                'propo4' => $prop4->getProp4()
-            ];
-            shuffle($props);
-            array_push($bigProps, $props);
-        };
+
         $dataToViews = [
             'quizOfAuthor' => $quizById,
             'questionsOfQuiz' => $questionByQuizId,
-            'bigProps' => $bigProps
         ];
-        dump($bigProps);
 
         $this->show('front/quiz', $dataToViews);
     }

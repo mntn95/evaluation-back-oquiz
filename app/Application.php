@@ -35,6 +35,14 @@ class Application {
         $this->router->map('GET', '/', 'MainController#indexAction', 'main_home');
         $this->router->map('GET', '/user', 'QuizController#myAccount', 'user_account');
         $this->router->map('GET', '/quiz/[i:id]', 'QuizController#quizDetail', 'quiz_quizdetail');
+        $this->router->map('GET', '/login', 'UserController#login', 'user_login');
+        // connexion en Ajax
+        $this->router->map('POST', '/ajax/user/login', 'UserController#ajaxLoginPost', 'user_ajaxlogin');
+        // deconnexion
+        $this->router->map('POST', '/logout', 'UserController#logout', 'user_logout');
+        // inscription
+        $this->router->map('GET|POST', '/signup', 'UserController#signup', 'user_signup');
+
     }
     
     // créer la méthode run qui doit afficher un message (peu importe) qui permet de vérifier qu'elle est bien éxécutée

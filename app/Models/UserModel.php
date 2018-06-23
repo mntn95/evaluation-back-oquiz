@@ -9,11 +9,14 @@ use PDO;
 
  class UserModel extends CoreModel {
     /** @var string */
-    protected $title;
+    protected $first_name;
     /** @var string */
-    protected $description;
-    /** @var int */
-    protected $id_author;
+    protected $last_name;
+    /** @var string */
+    protected $email;
+    /** @var string */
+    protected $password;
+
 
 
 
@@ -24,10 +27,21 @@ use PDO;
     // $this => l'objet courant
     // &copy; Georges : self c'est la classe où est écrit le code, static c'est la classe qui est en train d'utiliser la méthode
     
+    const TABLE_NAME = 'users';
 
 
-
-
+    public static function findByEmail(string $email) {
+        $sql = '
+            SELECT *
+            FROM '.self::TABLE_NAME.'
+            WHERE email = :email
+        ';
+        $pdoStatement = Database::getPDO()->prepare($sql);
+        $pdoStatement->bindValue(':email', $email, PDO::PARAM_STR);
+        $pdoStatement->execute();
+        
+        return $pdoStatement->fetchObject(self::class);
+    }
 
 
 
@@ -36,39 +50,99 @@ use PDO;
 
     //     return $quizByID;
     // }
-    protected function find() : bool {
+    public function find() : bool {
 
     }
 
-    protected function insert() : bool {
+    public function insert() : bool {
 
     }
-    protected function update() : bool {
+    public function update() : bool {
 
     }
-    protected function delete() : bool {
+    public function delete() : bool {
 
     }
 
-    // GETTERS
-    public function getTitle() : string {
-        return $this->title;
-    }
-    public function getDescription() : string {
-        return $this->description;
-    }
-    public function getIdAuthor() : int {
-        return $this->id_author;
+
+
+    /**
+     * Get the value of first_name
+     */ 
+    public function getFirst_name()
+    {
+        return $this->first_name;
     }
 
-    // SETTERS
-    public function setTitle(string $title) {
-        $this->title = $title;
+    /**
+     * Set the value of first_name
+     *
+     * @return  self
+     */ 
+    public function setFirst_name($first_name)
+    {
+        $this->first_name = $first_name;
+
+        return $this;
     }
-    public function setDescription(string $description) {
-        $this->description = $description;
+
+    /**
+     * Get the value of last_name
+     */ 
+    public function getLast_name()
+    {
+        return $this->last_name;
     }
-    public function setIdAuthor(int $id_author) {
-        $this->id_author = $id_author;
+
+    /**
+     * Set the value of last_name
+     *
+     * @return  self
+     */ 
+    public function setLast_name($last_name)
+    {
+        $this->last_name = $last_name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of email
+     */ 
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @return  self
+     */ 
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     */ 
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */ 
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
     }
 }

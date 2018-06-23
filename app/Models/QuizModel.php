@@ -40,47 +40,38 @@ use PDO;
         return $quizList;
     }
 
-    public static function find(int $id_author) {
-        $sql = '
-            SELECT *
-            FROM '.static::TABLE_NAME.'
-            WHERE id_author = :id_author
-        ';
-        $pdo = Database::getPDO();
-        // J'utilise "prepare" !!
-        $pdoStatement = $pdo->prepare($sql);
-        // Je fais les bindValue
-        $pdoStatement->bindValue(':id_author', $id_author, PDO::PARAM_INT);
-        
-        // J'exécute ma requete
-        $pdoStatement->execute();
-        
-        // Je récupère le résultat sous forme d'objet
-        // !Attention! Objet sous forme FQCN
-        // self::class => a pour valeur le FQCN de la classe actuelle
-        $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
-        
-        return $result;
-    }
-
-    public static function findById(int $id) {
+    public static function findByAuthor(int $id_author) {
+       
         $sql = '
         SELECT *
         FROM '.static::TABLE_NAME.'
-        WHERE id = :id
-        ';
-        $pdo = Database::getPDO();
-
-            $pdoStatement = $pdo->prepare($sql);
-
-            $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
-
-            $pdoStatement->execute();
-
-            $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
-            return $result;
+        WHERE id_author = :id_author
+    ';
+    $pdo = Database::getPDO();
+    // J'utilise "prepare" !!
+    $pdoStatement = $pdo->prepare($sql);
+    // Je fais les bindValue
+    $pdoStatement->bindValue(':id_author', $id_author, PDO::PARAM_INT);
+    
+    // J'exécute ma requete
+    $pdoStatement->execute();
+    
+    // Je récupère le résultat sous forme d'objet
+    // !Attention! Objet sous forme FQCN
+    // self::class => a pour valeur le FQCN de la classe actuelle
+    $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
+    
+    return $result;
     }
 
+    public static function findById(int $id) {
+        $quizById = parent::findById($id);
+     
+        return $quizById;
+    }
+    protected function find() : bool {
+
+    }
     protected function insert() : bool {
 
     }

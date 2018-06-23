@@ -39,14 +39,37 @@ abstract class CoreModel {
 
     // Méthode permettant de sauvegarder l'objet en DB
     public function save() : bool {
-        // TODO
+       // Si l'objet courant correspond à une ligne existante en DB
+       if ($this->id > 0) {
+        // Alors mise à jour
+        return $this->update();
+    }
+    else {
+        // Sinon, ajout (puis la propriété id récupère la nouvelle valeur)
+        return $this->insert();
+    }
     }
         
     // Pour être certain que les 4 méthodes du CRUD soient implémentées parmi les enfants de CoreModel
     // Je déclare des méthodes abstraites
-    public static function find(int $id_author) {
-    }
+    public static function findById(int $id) {
+        $sql = '
+        SELECT *
+        FROM '.static::TABLE_NAME.'
+        WHERE id = :id
+        ';
+        $pdo = Database::getPDO();
 
+            $pdoStatement = $pdo->prepare($sql);
+
+            $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
+
+            $pdoStatement->execute();
+
+            $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
+            return $result;
+    }
+    abstract protected function find() : bool;
     abstract protected function insert() : bool;
     abstract protected function update() : bool;
     abstract protected function delete() : bool;

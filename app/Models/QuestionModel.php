@@ -27,10 +27,24 @@ use PDO;
     /** @var string */
     protected $wiki;
 
-
     const TABLE_NAME = 'questions';
 
-    
+    public function __construct($shuffledProps=[], $props1='', $props2='', $props3='', $props4='') {
+        $props = [
+          $props1 = [ 'right'=> $this ->getProp1()],
+          $props2 = [ 'wrong'=> $this ->getProp2()],
+          $props3 = [ 'wrong'=> $this ->getProp3()],
+          $props4 = [ 'wrong'=> $this ->getProp4()]
+        ];
+        shuffle($props);
+
+        $shuffledProps = [
+          $this->prop1 = $props[0],
+          $this->prop2 = $props[1],
+          $this->prop3 = $props[2],
+          $this->prop4 = $props[3]
+        ];
+    }
 
     public static function findById(int $id) {
         $sql = '
@@ -49,7 +63,7 @@ use PDO;
             $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
             return $result;
     }
-    public static function find(int $id_author) : bool {
+    protected function find() : bool {
 
     }
 

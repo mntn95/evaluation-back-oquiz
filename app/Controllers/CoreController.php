@@ -8,6 +8,7 @@ namespace oQuiz\Controllers;
 // Import Classe erterne + alias
 use League\Plates\Engine as Plates;
 use oQuiz\Application;
+use oQuiz\Utils\User;
 
 // classe héritée par tous les controllers
 // abstract = cette classe ne peut avoir d'instance ou d'objet
@@ -36,6 +37,7 @@ abstract class CoreController {
         $this->templateEngine->addData([
             'router' => $this->router, // => $router dans toutes les views
             'basePath' => $app->getConfig('BASE_PATH'), // => $basePath
+            'connectedUser' => User::isConnected() ? User::getConnectedUser() : false // $connectedUser => user connecté
         ]);
     }
     
