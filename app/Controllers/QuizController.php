@@ -26,12 +26,25 @@ class QuizController extends CoreController {
         $quizById = QuizModel::findById($id);
         $questionByQuizId = QuestionModel::findById($id);
 
+        $currentUrl = $_SERVER['REQUEST_URI'];
+
         $dataToViews = [
             'quizOfAuthor' => $quizById,
             'questionsOfQuiz' => $questionByQuizId,
+            'url' => $currentUrl,
+            'id' => $id
         ];
 
+        
+
         $this->show('front/quiz', $dataToViews);
+
+     
+
+           $test = utf8_encode($_POST['exampleRadios']); // Don't forget the encoding
+           $data = json_decode($test);
+           dump($data->test);
+           exit();
     }
 
 }

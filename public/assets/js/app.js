@@ -13,11 +13,24 @@ var app = {
     e.preventDefault();
 
     var formData = $('.questionForm').serialize();
+    var quizId = $('.container').data('id');
 
     console.log(formData);
-
-    // var checkBox =
+    console.log('./'+quizId+'');
     
+
+    $.ajax({
+      url : './'+quizId+'',
+      method : 'POST',
+      dataType : 'json',
+      data : formData
+    }).done(function(response) {
+      console.log(response);
+      
+    }).fail(function(response) {
+      console.log(response);
+      
+    });
   },
 
   formSigninSubmit: function(evt) {

@@ -1,7 +1,7 @@
 <?php $this->layout('layout', ['title' => 'Quiz']) ?>
 <h2><?= $quizOfAuthor[0]->getTitle() ?></h2>
 <h5 class="card-title"><?= $quizOfAuthor[0]->getDescription() ?></h5>
-<div class="d-flex flex-wrap">
+<div class="container d-flex flex-wrap" data-id="<?= $id ?>">
     <?php foreach ($questionsOfQuiz as $key => $value) : ?>
         <div class="card col-3 m-1">
             <div class="card-body bg-light">
@@ -13,7 +13,10 @@
                 <?= $this->insert('partials/list-form', [
                     'quizOfAuthor' => $quizOfAuthor,
                     'questionsOfQuiz' => $questionsOfQuiz,
-                    'key' => $key
+                    'key' => $key,
+                    'url' => $url,
+                    'id' => $id,
+                    'exampleRadios' => 'exampleRadios'
                 ]) ?>
                 <?php else : ?>
                 <ol>
