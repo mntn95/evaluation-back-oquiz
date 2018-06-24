@@ -45,8 +45,13 @@ use PDO;
           $this->prop4 = $props[3]
         ];
     }
-
     public static function findById(int $id) {
+        $questionById = parent::findById($id);
+     
+        return $questionById;
+    }
+
+    public static function findQuizById(int $id) {
         $sql = '
         SELECT *
         FROM '.static::TABLE_NAME.'

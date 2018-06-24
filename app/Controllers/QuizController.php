@@ -24,7 +24,8 @@ class QuizController extends CoreController {
         // $qId = QuestionModel::getId();
         // Je veux un quiz depuis son ID
         $quizById = QuizModel::findById($id);
-        $questionByQuizId = QuestionModel::findById($id);
+        $questionByQuizId = QuestionModel::findQuizById($id);
+        // $questionById = QuestionModel::findById($id);
 
         $currentUrl = $_SERVER['REQUEST_URI'];
 
@@ -41,10 +42,10 @@ class QuizController extends CoreController {
 
      
 
-           $test = utf8_encode($_POST['exampleRadios']); // Don't forget the encoding
-           $data = json_decode($test);
-           dump($data->test);
-           exit();
+        //    $test = utf8_encode($_POST['exampleRadios']); // Don't forget the encoding
+        //    $data = json_decode($test);
+        //    dump($data->test);
+        //    exit();
     }
 
 }

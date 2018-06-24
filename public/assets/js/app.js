@@ -4,34 +4,50 @@ var app = {
 
     // Interception du form de connexion
     $('#formSignin').on('submit', app.formSigninSubmit);
-    // gestion du submit du quiz
-    $('#checkQuiz').on('click', app.quizSubmit);
-
+    // gestion du quiz
+    $('input').on('click', app.afterMath);
   },
 
-  quizSubmit: function(e) {
-    e.preventDefault();
 
-    var formData = $('.questionForm').serialize();
-    var quizId = $('.container').data('id');
+  afterMath : function() {
 
-    console.log(formData);
-    console.log('./'+quizId+'');
+
+    var parent = $(this).parent().parent().parent().parent();
+    parent.data("answer", $(this).val());
+
+
+    $('#checkQuiz').on('click', function() {
+
+    if (parent.data("answer") == 'right') {
+      parent.removeClass('border-dark');
+      parent.removeClass('border-warning');
+      parent.addClass('border-success');
+      parent.find('.card-header').addClass('bg-success');
+    }
+
+    else if (parent.data("answer") == 'wrong') {
+      parent.removeClass('border-dark');
+      parent.removeClass('border-success');
+      parent.addClass('border-warning');
+      parent.find('.card-header').addClass('bg-warning');
+    }
+    parent.find('.d-none').removeClass('d-none').next().removeClass('d-none');
+
+    var score = $('.bg-success').length;
+    if (score < 5) {
+      $('.score').addClass('alert alert-warning').html('Votre score : '+score+' /10');
+    }
+    else if (score > 5 ) {
+      $('.score').addClass('alert alert-success').html('Votre score : '+score+' /10');
+    }
+
     
+  })
 
-    $.ajax({
-      url : './'+quizId+'',
-      method : 'POST',
-      dataType : 'json',
-      data : formData
-    }).done(function(response) {
-      console.log(response);
-      
-    }).fail(function(response) {
-      console.log(response);
-      
-    });
-  },
+},
+
+  
+
 
   formSigninSubmit: function(evt) {
     // On empeche l'envoi du formulaire

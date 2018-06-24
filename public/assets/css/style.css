@@ -1,7 +1,35 @@
+
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin');
+
+body {
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+body header h1 {
+    font-weight: bold;
+}
+
+header nav, nav h6 {
+    font-weight: bold;
+}
+
+body h2, .nav-link button {
+    font-weight: bold;
+}
+
+
 div .card .card-body .card-title {
     color : #337AB7;
     font-weight: bold;
 }
 .title {
     color : #337AB7;
+}
+
+.navbar-nav li {
+    margin: 0 0 10px 0;
+}
+
+nav h6 {
+    margin-top: -0.3em;
 }
