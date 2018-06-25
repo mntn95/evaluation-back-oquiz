@@ -6,12 +6,17 @@
 namespace oQuiz\Controllers;
 use oQuiz\Models\QuizModel;
 use oQuiz\Models\QuestionModel;
+use oQuiz\Utils\User;
+
+
 
 
 class QuizController extends CoreController {
-    public function myAccount() {
+    public function myAccount($urlParams) {
+
+        // $id_author = $urlParams['id_author'];
         // Je veux les quiz de mon compte
-        $quizByAuthorID = QuizModel::findByAuthor(1);
+        $quizByAuthorID = QuizModel::findByAuthor($urlParams['id']);
         
         $dataToViews = [
             'quizOfAuthor' => $quizByAuthorID
@@ -25,7 +30,6 @@ class QuizController extends CoreController {
         // Je veux un quiz depuis son ID
         $quizById = QuizModel::findById($id);
         $questionByQuizId = QuestionModel::findQuizById($id);
-        // $questionById = QuestionModel::findById($id);
 
         $currentUrl = $_SERVER['REQUEST_URI'];
 
@@ -40,12 +44,7 @@ class QuizController extends CoreController {
 
         $this->show('front/quiz', $dataToViews);
 
-     
-
-        //    $test = utf8_encode($_POST['exampleRadios']); // Don't forget the encoding
-        //    $data = json_decode($test);
-        //    dump($data->test);
-        //    exit();
+    
     }
 
 }

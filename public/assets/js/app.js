@@ -19,7 +19,7 @@ var app = {
     $('#checkQuiz').on('click', function() {
 
     if (parent.data("answer") == 'right') {
-      parent.removeClass('border-dark');
+      parent.removeClass('border-primary');
       parent.removeClass('border-warning');
       parent.addClass('border-success');
       parent.find('.card-header').addClass('bg-success');
@@ -38,9 +38,9 @@ var app = {
       $('.score').addClass('alert alert-warning').html('Votre score : '+score+' /10');
     }
     else if (score > 5 ) {
+      $('.score').removeClass('alert alert-warning');
       $('.score').addClass('alert alert-success').html('Votre score : '+score+' /10');
     }
-
     
   })
 

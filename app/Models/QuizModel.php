@@ -69,6 +69,30 @@ use PDO;
      
         return $quizById;
     }
+
+
+    // Méthode qui retourne les quiz de l'auteur
+    public static function findAuthorById(int $id) {
+        $sql = '
+        SELECT first_name
+        FROM users JOIN quizzes
+        ON users.id = quizzes.id_author 
+        WHERE quizzes.id = :id
+        ';
+       
+        $pdo = Database::getPDO();
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
+        $pdoStatement->execute();
+        
+        $result = $pdoStatement->fetchAll();
+        return $result;
+    }
+
+    public function findName($id) {
+        return self::findAuthorById($id)[0][0];
+    }
+
     protected function find() : bool {
 
     }

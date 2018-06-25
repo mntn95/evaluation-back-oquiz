@@ -33,7 +33,7 @@ class Application {
     public function defineRoutes() {
         // Home (example)
         $this->router->map('GET', '/', 'MainController#indexAction', 'main_home');
-        $this->router->map('GET', '/user', 'QuizController#myAccount', 'user_account');
+        $this->router->map('GET', '/user/[i:id]', 'QuizController#myAccount', 'user_account');
         $this->router->map('GET|POST', '/quiz/[i:id]', 'QuizController#quizDetail', 'quiz_quizdetail');
         $this->router->map('GET', '/login', 'UserController#login', 'user_login');
         // connexion en Ajax

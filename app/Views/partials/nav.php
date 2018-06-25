@@ -1,5 +1,5 @@
 <header>
-  <h1 class="title">oQuiz</h1>
+  <h1 class="title text-primary">oQuiz</h1>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <?php if ($connectedUser !== false) : ?>
               <h6>Bonjour <?= $connectedUser->getFirst_name() ?></h6>
@@ -13,7 +13,7 @@
             </li>
             <?php if ($connectedUser !== false) : ?>
             <li class="nav-item active">
-                <a class="nav-link" href="<?= $router->generate('user_account') ?>">Mon compte</a>
+                <a class="nav-link" href="<?= $router->generate('user_account', ['id' => $connectedUser->getId()]) ?>">Mon compte</a>
             </li>
               <?php else : ?>
               <li class="nav-item active">

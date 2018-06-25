@@ -6,7 +6,7 @@
         <div class="card-body">
           <h5 class="card-title"><?= $this->e($currentList->getTitle()) ?></h5>
           <h6 class="card-subtitle mb-2 text-muted"><?= $this->e($currentList->getDescription()) ?></h6>
-          <p class="card-text"><?= $this->e($currentList->getIdAuthor()) ?></p>
+          <p class="card-text">by <?= $connectedUser->getFirst_name() ?></p>
         </div>
       </div>
     <?php endforeach; ?>

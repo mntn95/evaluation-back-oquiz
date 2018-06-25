@@ -45,11 +45,6 @@ use PDO;
 
 
 
-    // public static function find(int $id_author) {
-    //     $quizByID = parent::find($id_author);
-
-    //     return $quizByID;
-    // }
     public function find() : bool {
 
     }

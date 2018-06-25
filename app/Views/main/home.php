@@ -10,8 +10,8 @@
       <div class="card m-1" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title"><a href="<?= $router->generate('quiz_quizdetail', ['id' =>$currentList->getId()]) ?>"><?= $this->e($currentList->getTitle()) ?></a></h5>
-          <h6 class="card-subtitle mb-2 text-muted"><?= $this->e($currentList->getDescription()) ?></h6>
-          <p class="card-text">by <?= $this->e($currentList->getIdAuthor()) ?></p>
+          <h6 class="card-subtitle mb-2 font-weight-bold"><?= $this->e($currentList->getDescription()) ?></h6>
+          <p class="card-text text-muted">by <?=$currentList->findName($currentList->getId())?></p>
         </div>
       </div>
     <?php endforeach; ?>
