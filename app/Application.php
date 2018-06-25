@@ -38,13 +38,13 @@ class Application {
         // connexion
         $this->router->map('GET', '/login', 'UserController#login', 'user_login');
         // connexion en Ajax
-        $this->router->map('POST', '/ajax/user/login', 'UserController#ajaxLoginPost', 'user_ajaxlogin');
-        // deconnexion
-        $this->router->map('POST', '/logout', 'UserController#logout', 'user_logout');
+        $this->router->map('POST', '/ajax/login', 'UserController#ajaxLogin', 'user_ajaxlogin');
         // inscription
-        $this->router->map('GET|POST', '/signup', 'UserController#signup', 'user_signup');
+        $this->router->map('GET', '/signup', 'UserController#signup', 'user_signup');
         // inscription en Ajax
         $this->router->map('POST', '/ajax/signup', 'UserController#ajaxSignup', 'user_ajaxsignup');
+        // deconnexion
+        $this->router->map('POST', '/logout', 'UserController#logout', 'user_logout');
 
     }
     

@@ -101,7 +101,7 @@ class UserController extends CoreController {
         // Exécute la view
         $this->show('user/login');
     }
-    public function ajaxLoginPost() {
+    public function ajaxLogin() {
         // Tableau contenant toutes les erreurs
         $errorList = [];
         

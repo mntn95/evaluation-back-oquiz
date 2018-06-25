@@ -7,6 +7,8 @@ var app = {
     $('#signin').on('submit', app.signinSubmit);
     // gestion du quiz
     $('input').on('click', app.afterMath);
+
+    $(document).ready(app.levelColor);
   },
 
 
@@ -25,13 +27,16 @@ var app = {
       parent.addClass('border-success');
       parent.find('.card-header').addClass('bg-success');
     }
-
+    
     else if (parent.data("answer") == 'wrong') {
       parent.removeClass('border-dark');
       parent.removeClass('border-success');
       parent.addClass('border-warning');
       parent.find('.card-header').addClass('bg-warning');
     }
+    parent.find( "p:contains('Débutant')" ).removeClass('text-success');
+    parent.find( "p:contains('Confirmé')" ).removeClass('text-warning');
+    parent.find( "p:contains('Expert')" ).removeClass('text-danger');
     parent.find('.d-none').removeClass('d-none').next().removeClass('d-none');
 
     var score = $('.bg-success').length;
@@ -47,7 +52,13 @@ var app = {
 
 },
 
+  levelColor: function() {
   
+    $( "p:contains('Débutant')" ).addClass('text-success');
+    $( "p:contains('Confirmé')" ).addClass('text-warning');
+    $( "p:contains('Expert')" ).addClass('text-danger');
+    
+  },
 
 
   signinSubmit: function(evt) {

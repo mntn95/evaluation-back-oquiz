@@ -7,7 +7,7 @@
     <?php foreach ($questionsOfQuiz as $key => $value) : ?>
     <div class="card border-primary m-3" style="max-width: 18rem">
     <div class="card-header"> <?= $this->e($questionsOfQuiz[$key]->getQuestion()) ?>
-    <p class=" mt-2 font-italic"> <?= $questionsOfQuiz[$key]->findLevelById($questionsOfQuiz[$key]->getId())[0]['name'] ?></p>
+    <p class="mt-2 font-italic"> <?= $questionsOfQuiz[$key]->findLevelById($questionsOfQuiz[$key]->getId())[0]['name'] ?></p>
     </div>
         <div class="card-body text-dark">
         <p class="card-text">
