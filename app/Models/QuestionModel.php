@@ -51,6 +51,23 @@ use PDO;
         return $questionById;
     }
 
+    public static function findLevelById(int $id) {
+        $sql = '
+        SELECT name
+        FROM levels JOIN '.static::TABLE_NAME.'
+        ON levels.id = '.static::TABLE_NAME.'.id_level 
+        WHERE '.static::TABLE_NAME.'.id = :id
+        ';
+
+        $pdo = Database::getPDO();
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
+        $pdoStatement->execute();
+        
+        $result = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public static function findQuizById(int $id) {
         $sql = '
         SELECT *

@@ -1,12 +1,14 @@
 <?php $this->layout('layout', ['title' => 'Quiz']) ?>
-<h2><?= $quizOfAuthor[0]->getTitle() ?></h2>
+<h2 class="mt-5"><?= $quizOfAuthor[0]->getTitle() ?></h2>
 <h5 class="card-title font-italic"><?= $quizOfAuthor[0]->getDescription() ?></h5>
 <p>by <?= $quizOfAuthor[0]->findName($quizOfAuthor[0]->getId())  ?></p>
 <div class="score"></div>
 <div class="container d-flex flex-wrap" data-id="<?= $id ?>">
     <?php foreach ($questionsOfQuiz as $key => $value) : ?>
     <div class="card border-primary m-3" style="max-width: 18rem">
-    <div class="card-header"> <?= $this->e($questionsOfQuiz[$key]->getQuestion()) ?></div>
+    <div class="card-header"> <?= $this->e($questionsOfQuiz[$key]->getQuestion()) ?>
+    <p class=" mt-2 font-italic"> <?= $questionsOfQuiz[$key]->findLevelById($questionsOfQuiz[$key]->getId())[0]['name'] ?></p>
+    </div>
         <div class="card-body text-dark">
         <p class="card-text">
                 <?php if ($connectedUser !== false) : ?>

@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <form action="<?= $router->generate('user_ajaxlogin') ?>" method="post" id="formSignin">
+    <form action="<?= $router->generate('user_ajaxlogin') ?>" method="post" id="signin">
       <div class="form-group">
         <label for="exampleInputEmail1">Email</label>
         <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">

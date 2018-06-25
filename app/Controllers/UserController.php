@@ -11,7 +11,7 @@ use oQuiz\Utils\User;
 
 class UserController extends CoreController {
 
-    public function signup() {
+    public function ajaxSignup() {
         // Tableau contenant toutes les erreurs
         $errorList = [];
         
@@ -19,16 +19,26 @@ class UserController extends CoreController {
         if (!empty($_POST)) {
             //dump($_POST);exit;
             // Je récupère les données
+            $firstName = isset($_POST['firstName']) ? $_POST['firstName'] : '';
+            $lastName = isset($_POST['lastName']) ? $_POST['lastName'] : '';
             $email = isset($_POST['email']) ? $_POST['email'] : '';
             $password = isset($_POST['password']) ? $_POST['password'] : '';
             $passwordConfirm = isset($_POST['passwordConfirm']) ? $_POST['passwordConfirm'] : '';
             
             // Je traite les données si besoin
+            $firstName = trim($firstName);
+            $lastName = trim($lastName);
             $email = trim($email);
             $password = trim($password);
             $passwordConfirm = trim($passwordConfirm);
             
             // Je valide les données => je cherche les erreurs
+            if (empty($firstName)) {
+                $errorList[] = 'Veuillez saisir un prénom';
+            }
+            if (empty($lastName)) {
+                $errorList[] = 'Veuillez saisir un nom';
+            }
             if (empty($email)) {
                 $errorList[] = 'Email vide';
             }
@@ -63,14 +73,16 @@ class UserController extends CoreController {
                     // Je hash/encode le mot de passe
                     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                     
-                    // On insert en DB
-                    $newUserModel = new UserModel();
-                    $newUserModel->setEmail($email);
-                    $newUserModel->setPassword($hashedPassword);
-                    $newUserModel->save();
-                    
-                    // On redirige sur la page profile
-                    $this->redirectToRoute('user_profile');
+                     // On insere en DB
+                     $newUserModel = new UserModel();
+                     $newUserModel->setFirst_Name($firstName);
+                     $newUserModel->setLast_Name($lastName);
+                     $newUserModel->setEmail($email);
+                     $newUserModel->setPassword($hashedPassword);
+                     $newUserModel->save();
+                     User::connect($newUserModel);
+                     // Je redirige vers l'accueil
+                     $this->redirectToRoute('main_home');
                 }
             }
         }
@@ -79,6 +91,10 @@ class UserController extends CoreController {
         $this->show('user/signup', [
             'errorList' => $errorList
         ]);
+    }
+    public function signup() {
+        // Exécute la view
+        $this->show('user/signup');
     }
 
     public function login() {

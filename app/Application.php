@@ -35,6 +35,7 @@ class Application {
         $this->router->map('GET', '/', 'MainController#indexAction', 'main_home');
         $this->router->map('GET', '/user/[i:id]', 'QuizController#myAccount', 'user_account');
         $this->router->map('GET|POST', '/quiz/[i:id]', 'QuizController#quizDetail', 'quiz_quizdetail');
+        // connexion
         $this->router->map('GET', '/login', 'UserController#login', 'user_login');
         // connexion en Ajax
         $this->router->map('POST', '/ajax/user/login', 'UserController#ajaxLoginPost', 'user_ajaxlogin');
@@ -42,6 +43,8 @@ class Application {
         $this->router->map('POST', '/logout', 'UserController#logout', 'user_logout');
         // inscription
         $this->router->map('GET|POST', '/signup', 'UserController#signup', 'user_signup');
+        // inscription en Ajax
+        $this->router->map('POST', '/ajax/signup', 'UserController#ajaxSignup', 'user_ajaxsignup');
 
     }
     

@@ -1,13 +1,17 @@
 <header>
   <h1 class="title text-primary">oQuiz</h1>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
           <?php if ($connectedUser !== false) : ?>
-              <h6>Bonjour <?= $connectedUser->getFirst_name() ?></h6>
+          <h6 class="navbar-brand mt-1">Bonjour <?= $connectedUser->getFirst_name() ?></h6>
           <?php else : ?>
-              <h6>Bienvenue</h6>
+          <h6 class="navbar-brand mt-1" href="#">Bienvenue</h6>
           <?php endif; ?>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav mr-auto">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
               <a class="nav-link" href="<?= $router->generate('main_home') ?>">Accueil <span class="sr-only">(current)</span></a>
             </li>
@@ -20,17 +24,18 @@
                   <a class="nav-link" href="<?= $router->generate('user_login') ?>">Connexion</a>
               </li>
               <?php endif; ?>
-            <li class="nav-item active">
+            <li class="nav-item ">
             <?php if ($connectedUser !== false) : ?>
                 <form class="nav-link" action="<?= $router->generate('user_logout') ?>" method="post">
-                    <button class="menu-hover border-0 bg-transparent">Déconnexion</button>
+                    <button class="nav-link active border-0 p-0 bg-transparent">Déconnexion</button>
                 </form>
             <?php else : ?>
-                <a class="nav-link" href="<?= $router->generate('user_signup') ?>">
+                <a class="nav-link active" href="<?= $router->generate('user_signup') ?>">
                     <i class="fas fa-edit"></i>Inscription</a>
             <?php endif; ?>
             </li>
           </ul>
         </div>
+      </div>
     </nav>
 </header>

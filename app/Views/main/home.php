@@ -2,7 +2,7 @@
 
   <body>
       
-      <main>
+      <main class="mt-5">
         <h2>Bienvenue sur O'Quiz</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum et assumenda similique ipsa dicta sunt reiciendis quod commodi tenetur! Veritatis fuga sapiente nesciunt, a commodi, eveniet accusantium unde et alias, perspiciatis quos nulla natus qui atque quasi sit officiis! Adipisci exercitationem, quasi laboriosam mollitia eum debitis vero commodi, rem animi temporibus modi ad repellendus dicta explicabo voluptates reprehenderit minima tenetur quaerat vitae!</p>
         <div class="d-flex flex-wrap">

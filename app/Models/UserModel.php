@@ -50,6 +50,26 @@ use PDO;
     }
 
     public function insert() : bool {
+        $sql = '
+        INSERT INTO '.self::TABLE_NAME.' (`first_name`, `last_name`, `email`, `password`)
+        VALUES (:first_name, :last_name, :email, :password
+        )
+        ';
+        $pdoStatement = Database::getPDO()->prepare($sql);
+        $pdoStatement->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':last_name', $this->last_name, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $pdoStatement->execute();
+        
+        $affectedRows = $pdoStatement->rowCount();
+        
+        if ($affectedRows > 0) {
+            $this->id = Database::getPDO()->lastInsertId();
+            return true;
+        }
+        return false;
+
 
     }
     public function update() : bool {
