@@ -142,7 +142,7 @@ var app = {
       console.log(response);
       
       // Je stocke dans une variable la partie content pour ne pas faire pleins de recherches inutiles dans le DOM
-      var $alertDiv = $('#alertSignin');
+      var $alertDiv = $('#alertSignup');
       var $content = $alertDiv.find('.content');
       
       // Si ok
@@ -150,9 +150,9 @@ var app = {
         // J'ajoute la classe danger
         $alertDiv.removeClass('alert-danger').addClass('alert-success');
         // J'affiche le message de succès
-        $content.html('Connexion réussie');
+        $content.html('Inscription réussie');
         // J'affiche la div
-        $alertDiv.show();
+        $alertDiv.removeClass('d-none');
         
         
         var urlToRedirect = response.redirect;
@@ -178,7 +178,7 @@ var app = {
           $content.append($currenterrorDiv);
         });
         // J'affiche la div
-        $alertDiv.show();
+        $alertDiv.removeClass('d-none');
       }
       
     }).fail(function() {

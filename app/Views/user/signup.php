@@ -3,16 +3,15 @@
 <div class="col-md-6 offset-md-3 my-3">
     <h2>Inscription</h2>
 
-    <?php if (!empty($errorList)) : ?>
-        <div class="alert alert-danger" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        <?php foreach ($errorList as $currentError) : ?>
-            <?= $currentError ?><br>
-        <?php endforeach; ?>
+    <div class="alert d-none" role="alert" id="alertSignup" >
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="content">
+            
         </div>
-    <?php endif; ?>
+    </div>
+
 
     <form action="<?= $router->generate('user_ajaxsignup') ?>" method="post" id="signup">
       <div class="form-group">

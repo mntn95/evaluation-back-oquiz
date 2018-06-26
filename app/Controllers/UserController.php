@@ -82,9 +82,21 @@ class UserController extends CoreController {
                      $newUserModel->save();
                      User::connect($newUserModel);
                      // Je redirige vers l'accueil
-                     $this->redirectToRoute('main_home');
+                     // Affichage d'un JSON "ok"
+                    self::sendJson([
+                        'code' => 1,
+                        'redirect' => $this->router->generate('main_home'),
+                        'errorList' => $errorList
+                    ]);
                 }
             }
+            // Si on arrive ici, c'est que c'est pas "ok"
+            // Donc, on affiche un JSON avec les erreurs
+            // Affichage d'un JSON "ok"
+            self::sendJson([
+                'code' => 2,
+                'errorList' => $errorList
+            ]);
         }
         
         // Exécute la view

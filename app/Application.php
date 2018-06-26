@@ -47,6 +47,7 @@ class Application {
         $this->router->map('POST', '/logout', 'UserController#logout', 'user_logout');
 
     }
+
     
     // créer la méthode run qui doit afficher un message (peu importe) qui permet de vérifier qu'elle est bien éxécutée
     public function run() {
