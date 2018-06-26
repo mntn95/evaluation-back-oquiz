@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<?= $basePath.DIRECTORY_SEPARATOR ?>assets/css/style.css">
     </head>
     <body class="ml-3">
-
+    <!-- Insertions des partials/contenus -->
     <?= $this->insert('partials/nav') ?>
     <?=$this->section('content')?>
     <hr>

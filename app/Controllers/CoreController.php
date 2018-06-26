@@ -5,7 +5,7 @@
 // au final => app/Controllers/
 namespace oQuiz\Controllers; 
 
-// Import Classe erterne + alias
+// Import Classe externe + alias
 use League\Plates\Engine as Plates;
 use oQuiz\Application;
 use oQuiz\Utils\User;
@@ -30,7 +30,7 @@ abstract class CoreController {
         // Create new Plates instance
         $this->templateEngine = new Plates(__DIR__.'/../Views');
         
-        // Je stocke l'objet AlotRouter
+        // Je stocke l'objet AltoRouter
         $this->router = $app->getRouter();
         
         // On transmet des données à toutes les views

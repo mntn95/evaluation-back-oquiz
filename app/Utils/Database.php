@@ -1,6 +1,6 @@
 <?php
 
-namespace oQuiz\Utils; // TODO changer namespace
+namespace oQuiz\Utils; 
 
 use PDO;
 

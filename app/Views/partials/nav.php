@@ -2,11 +2,13 @@
   <h1 class="title text-primary">oQuiz</h1>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
+          <!-- Si l'utilisateur est connecté, on lui dit bonjour, sinon bienvenue -->
           <?php if ($connectedUser !== false) : ?>
           <h6 class="navbar-brand mt-1">Bonjour <?= $connectedUser->getFirst_name() ?></h6>
           <?php else : ?>
           <h6 class="navbar-brand mt-1" href="#">Bienvenue</h6>
           <?php endif; ?>
+          <!-- Bouton menu burger pour version mobiles -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -15,10 +17,12 @@
             <li class="nav-item active">
               <a class="nav-link" href="<?= $router->generate('main_home') ?>">Accueil <span class="sr-only">(current)</span></a>
             </li>
+            <!-- Si l'utilisateur est connecté, il peut accéder a son "compte" (liste de ses quiz), ou se déconnecter -->
             <?php if ($connectedUser !== false) : ?>
             <li class="nav-item active">
                 <a class="nav-link" href="<?= $router->generate('user_account', ['id' => $connectedUser->getId()]) ?>">Mon compte</a>
             </li>
+              <!-- Sinon, on l'invite a se connecter, ou s'inscrire -->
               <?php else : ?>
               <li class="nav-item active">
                   <a class="nav-link" href="<?= $router->generate('user_login') ?>">Connexion</a>

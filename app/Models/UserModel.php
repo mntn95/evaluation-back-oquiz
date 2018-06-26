@@ -1,8 +1,8 @@
 <?php
 
-namespace oQuiz\Models; // TODO changer namespace
+namespace oQuiz\Models; 
 
-use oQuiz\Utils\Database; // TODO changer namespace
+use oQuiz\Utils\Database; 
 use PDO;
 
 
@@ -29,7 +29,7 @@ use PDO;
     
     const TABLE_NAME = 'users';
 
-
+    // Méthode qui vérifie si l'email existe
     public static function findByEmail(string $email) {
         $sql = '
             SELECT *
@@ -44,11 +44,12 @@ use PDO;
     }
 
 
-
+    // CRUD
     public function find() : bool {
 
     }
 
+    // Insère en BDD les données du nouvel inscrit
     public function insert() : bool {
         $sql = '
         INSERT INTO '.self::TABLE_NAME.' (`first_name`, `last_name`, `email`, `password`)

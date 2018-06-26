@@ -1,8 +1,8 @@
 <?php
 
-namespace oQuiz\Models; // TODO changer namespace
+namespace oQuiz\Models; 
 
-use oQuiz\Utils\Database; // TODO changer namespace
+use oQuiz\Utils\Database; 
 use PDO;
 
 // abstract => interdiction de créer une instance de cette classe
@@ -17,19 +17,17 @@ abstract class CoreModel {
 
 
 
+    // Je veux récuperer tous les éléments de la table
     public static function findAll() : array {
-        //echo self::class.'<br>';
+
         $sql = '
             SELECT *
             FROM '.static::TABLE_NAME.'
         ';
         $pdo = Database::getPDO();
-        // J'utilise "prepare" !!
+
         $pdoStatement = $pdo->query($sql);
         
-        // Je récupère le résultat sous forme d'array d'objets
-        // !Attention! Objet sous forme FQCN
-        // static::class => a pour valeur le FQCN de la classe actuelle
         $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
         
         return $result;
@@ -49,9 +47,8 @@ abstract class CoreModel {
         return $this->insert();
     }
     }
-        
-    // Pour être certain que les 4 méthodes du CRUD soient implémentées parmi les enfants de CoreModel
-    // Je déclare des méthodes abstraites
+
+    // Je veux récuperer les élements de la table qui ont l'id voulue
     public static function findById(int $id) {
         $sql = '
         SELECT *
@@ -59,16 +56,19 @@ abstract class CoreModel {
         WHERE id = :id
         ';
         $pdo = Database::getPDO();
-
-            $pdoStatement = $pdo->prepare($sql);
-
-            $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
-
-            $pdoStatement->execute();
-
-            $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
-            return $result;
+        
+        $pdoStatement = $pdo->prepare($sql);
+        
+        $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
+        
+        $pdoStatement->execute();
+        
+        $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
+        return $result;
     }
+
+    // Pour être certain que les 4 méthodes du CRUD soient implémentées parmi les enfants de CoreModel
+    // Je déclare des méthodes abstraites
     abstract protected function find() : bool;
     abstract protected function insert() : bool;
     abstract protected function update() : bool;

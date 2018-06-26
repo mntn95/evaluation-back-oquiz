@@ -3,6 +3,7 @@
 <div class="col-md-6 offset-md-3 my-3">
     <h2>Inscription</h2>
 
+    <!-- Je garde cette div cachée qui affichera les éventuelles erreurs, ou la validation de l'inscription' -->
     <div class="alert d-none" role="alert" id="alertSignup" >
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>

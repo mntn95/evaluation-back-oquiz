@@ -1,7 +1,7 @@
 <?php
 
 // Pour composer "oQuiz" correspond au répertoire "app"
-namespace oQuiz; // TODO changer namespace
+namespace oQuiz; 
 
 // J'importe les classes qui sont dans un autre namespace
 use AltoRouter; // => importe \AltoRouter
@@ -17,7 +17,6 @@ class Application {
     public function __construct() {
         // Récupération des données de la config
         $this->config = parse_ini_file(__DIR__ . '/config.conf');
-        //dump($this->config);exit;
         
         // instancier le routeur
         $this->router = new AltoRouter();
@@ -31,19 +30,22 @@ class Application {
     
     // Méthode s'occupant de mapper toutes les routes
     public function defineRoutes() {
-        // Home (example)
+
+        // Home
         $this->router->map('GET', '/', 'MainController#indexAction', 'main_home');
+        // Page du compte utilisateur
         $this->router->map('GET', '/user/[i:id]', 'QuizController#myAccount', 'user_account');
+        // Page d'un quiz
         $this->router->map('GET|POST', '/quiz/[i:id]', 'QuizController#quizDetail', 'quiz_quizdetail');
-        // connexion
+        // Connexion
         $this->router->map('GET', '/login', 'UserController#login', 'user_login');
-        // connexion en Ajax
+        // Connexion en Ajax
         $this->router->map('POST', '/ajax/login', 'UserController#ajaxLogin', 'user_ajaxlogin');
-        // inscription
+        // Inscription
         $this->router->map('GET', '/signup', 'UserController#signup', 'user_signup');
-        // inscription en Ajax
+        // Inscription en Ajax
         $this->router->map('POST', '/ajax/signup', 'UserController#ajaxSignup', 'user_ajaxsignup');
-        // deconnexion
+        // Deconnexion
         $this->router->map('POST', '/logout', 'UserController#logout', 'user_logout');
 
     }
@@ -52,9 +54,7 @@ class Application {
     // créer la méthode run qui doit afficher un message (peu importe) qui permet de vérifier qu'elle est bien éxécutée
     public function run() {
         // le routeur doit faire le "match"
-        // Petit AltoRouter, peux-tu stp, me donner la route correspondant à l'URL courante
         $match = $this->router->match();
-        //dump($match);exit;
         
         // -- DISPATCH --
         
@@ -75,7 +75,7 @@ class Application {
             //echo '$methodName='.$methodName.'<br>';
             
             // J'ajoute le namespace des Controllers afin d'avoir un FQCN (fully qualified class name)
-            $controllerName = 'oQuiz\Controllers\\'.$controllerName; // TODO changer namespace
+            $controllerName = 'oQuiz\Controllers\\'.$controllerName; 
             // résultat par exemple : oQuiz\Controllers\MainController
             
             // J'instancie le controller
@@ -92,12 +92,11 @@ class Application {
         // Si aucun route ne correspond à l'URL courante
         else {
             // J'envoie une header pour spécifier le statut 404 HTTP
-            \oQuiz\Controllers\CoreController::sendHttpError(404, 'Sonia - 404'); // sans utiliser de "use" - TODO changer namespace
+            \oQuiz\Controllers\CoreController::sendHttpError(404, '<h2>ERROR 404 - PLEASE LEARN TO CODE</h2>'); // sans utiliser de "use" - TODO changer namespace
         }
     }
     
     // GETTERS
-    // On peut spécifier le type de données retourné !!!!!
     // Si le type n'est pas le bon => Fatal Error !
     public function getRouter() : AltoRouter {
         return $this->router;

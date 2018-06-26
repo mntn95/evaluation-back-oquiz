@@ -5,22 +5,24 @@ var app = {
     $('#signup').on('submit', app.signupSubmit);
     // Connexion
     $('#signin').on('submit', app.signinSubmit);
-    // gestion du quiz
+    // Gestion des réponses du quiz
     $('input').on('click', app.afterMath);
-
+    // Gestion des couleurs des niveaux
     $(document).ready(app.levelColor);
   },
 
-
+  // A chaque click d'un bouton RADIO
   afterMath : function() {
 
-
+    // Je vais stocker en data la valeur du bouton a son ancètre qui doit changer de couleur
+    // selon la validité de la réponse
     var parent = $(this).parent().parent().parent().parent();
     parent.data("answer", $(this).val());
 
-
+    // Au click du bouton OK, je vérifie les réponses
     $('#checkQuiz').on('click', function() {
 
+    // Si la réponse est valide, je change parent en vert
     if (parent.data("answer") == 'right') {
       parent.removeClass('border-primary');
       parent.removeClass('border-warning');
@@ -28,21 +30,31 @@ var app = {
       parent.find('.card-header').addClass('bg-success');
     }
     
+    // Si la réponse n'est pas valide, je change parent en jaune
     else if (parent.data("answer") == 'wrong') {
       parent.removeClass('border-dark');
       parent.removeClass('border-success');
       parent.addClass('border-warning');
       parent.find('.card-header').addClass('bg-warning');
     }
+
+    // J'enleve la couleur des levels qui pourraient etre rendus invisibles selon les réponses (jaune sur jaune par ex)
     parent.find( "p:contains('Débutant')" ).removeClass('text-success');
     parent.find( "p:contains('Confirmé')" ).removeClass('text-warning');
     parent.find( "p:contains('Expert')" ).removeClass('text-danger');
+
+    // Je rend visible l'anecdote de chaque question ainsi que son lien wiki
     parent.find('.d-none').removeClass('d-none').next().removeClass('d-none');
 
+    // Je cherche les elements ayant la classe bg success afin de connaitre le nombre de mes bonnes réponses
+    // puis je les affiche
     var score = $('.bg-success').length;
+
+    // Si l'utilisateur atteint un score supérieur a 5, la div tourne au vert
     if (score < 5) {
       $('.score').addClass('alert alert-warning').html('Votre score : '+score+' /10');
     }
+    // Sinon, elle tourne au jaune
     else if (score > 5 ) {
       $('.score').removeClass('alert alert-warning');
       $('.score').addClass('alert alert-success').html('Votre score : '+score+' /10');
@@ -52,6 +64,8 @@ var app = {
 
 },
 
+  // Méthode qui permet de changer la couleur du p selon son contenu
+  // Ici elle sert a donner de l'importance au level de chaque question
   levelColor: function() {
   
     $( "p:contains('Débutant')" ).addClass('text-success');
@@ -60,7 +74,7 @@ var app = {
     
   },
 
-
+  // Gestion de la connexion en Ajax
   signinSubmit: function(evt) {
     // On empeche l'envoi du formulaire
     evt.preventDefault();
@@ -124,6 +138,7 @@ var app = {
     });
   },
 
+  // Gestion de l'inscription en Ajax
   signupSubmit: function(evt) {
     // On empeche l'envoi du formulaire
     evt.preventDefault();

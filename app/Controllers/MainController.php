@@ -11,6 +11,7 @@ class MainController extends CoreController {
         // Je veux tous les quiz de la DB
         $quizList = QuizModel::findAll();
         
+        // J'envoie mes données aux views
         $dataToViews = [
             'listOfQuiz' => $quizList,
         ];

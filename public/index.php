@@ -4,13 +4,7 @@
 require (__DIR__.'/../vendor/autoload.php');
 
 // J'active le système de sessions de PHP
-// à placer au début, du début, du début, etc., du code
-// ou presque, on laisse l'autoload avant
 session_start();
-
-// Uniquement pour tester la méthode run de la classe Application
-// Composer gère l'autoload => on commente la ligne
-// require (__DIR__.'/../app/Application.php');
 
 // Au lieu d'inclure chaque classe, je les importe ici
 use oQuiz\Application; // TODO changer le namespace
@@ -19,5 +13,3 @@ use oQuiz\Application; // TODO changer le namespace
 $app = new Application();
 $app->run();
 
-// vérififaction des fichiers inclus
-//dump(get_included_files());

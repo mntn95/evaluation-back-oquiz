@@ -1,16 +1,18 @@
 <?php $this->layout('layout', ['title' => 'Quiz']) ?>
 <h2 class="mt-5"><?= $quizOfAuthor[0]->getTitle() ?></h2>
 <h5 class="card-title font-italic"><?= $quizOfAuthor[0]->getDescription() ?></h5>
-<p>by <?= $quizOfAuthor[0]->findName($quizOfAuthor[0]->getId())  ?></p>
+<p>by <?= $quizOfAuthor[0]->findAuthorName($quizOfAuthor[0]->getId())  ?></p>
 <div class="score"></div>
 <div class="container d-flex flex-wrap" data-id="<?= $id ?>">
     <?php foreach ($questionsOfQuiz as $key => $value) : ?>
     <div class="card border-primary m-3" style="max-width: 18rem">
     <div class="card-header"> <?= $this->e($questionsOfQuiz[$key]->getQuestion()) ?>
+    <!-- La couleur du level est gérée directement en JS -->
     <p class="mt-2 font-italic"> <?= $questionsOfQuiz[$key]->findLevelById($questionsOfQuiz[$key]->getId())[0]['name'] ?></p>
     </div>
         <div class="card-body text-dark">
         <p class="card-text">
+                <!-- Si l'utilisateur est connecté, j'insere la partial qui lui permettra de jouer au quiz -->
                 <?php if ($connectedUser !== false) : ?>
                 <?= $this->insert('partials/list-form', [
                     'quizOfAuthor' => $quizOfAuthor,
@@ -18,6 +20,7 @@
                     'key' => $key,
                     'url' => $url
                 ]) ?>
+                <!-- Sinon, je les affiche quand même sans qu'il puisse interagir avec -->
                 <?php else : ?>
                 <ol>
                     <li><?= implode($questionsOfQuiz[$key]->getProp1()) ?></li>

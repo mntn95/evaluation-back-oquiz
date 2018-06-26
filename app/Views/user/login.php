@@ -3,6 +3,7 @@
 <div class="col-md-6 offset-md-3 my-3">
     <h2>Connexion</h2>
 
+    <!-- Je garde cette div cachée qui affichera les éventuelles erreurs, ou la validation de la connexion -->
     <div class="alert" role="alert" id="alertSignin" style="display:none;">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>

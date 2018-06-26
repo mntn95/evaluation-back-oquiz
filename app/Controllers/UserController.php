@@ -17,15 +17,15 @@ class UserController extends CoreController {
         
         // formulaire soumis
         if (!empty($_POST)) {
-            //dump($_POST);exit;
-            // Je récupère les données
+
+            // Je récupère les données de l'inscription
             $firstName = isset($_POST['firstName']) ? $_POST['firstName'] : '';
             $lastName = isset($_POST['lastName']) ? $_POST['lastName'] : '';
             $email = isset($_POST['email']) ? $_POST['email'] : '';
             $password = isset($_POST['password']) ? $_POST['password'] : '';
             $passwordConfirm = isset($_POST['passwordConfirm']) ? $_POST['passwordConfirm'] : '';
             
-            // Je traite les données si besoin
+            // Je traite les données si besoin est
             $firstName = trim($firstName);
             $lastName = trim($lastName);
             $email = trim($email);
@@ -114,11 +114,11 @@ class UserController extends CoreController {
         $this->show('user/login');
     }
     public function ajaxLogin() {
+
         // Tableau contenant toutes les erreurs
         $errorList = [];
         
-        //dump($_POST);exit;
-        // Je récupère les données
+        // Je récupère les données de la connexion
         $email = isset($_POST['email']) ? $_POST['email'] : '';
         $password = isset($_POST['password']) ? $_POST['password'] : '';
         

@@ -1,8 +1,8 @@
 <?php
 
-namespace oQuiz\Models; // TODO changer namespace
+namespace oQuiz\Models; 
 
-use oQuiz\Utils\Database; // TODO changer namespace
+use oQuiz\Utils\Database; 
 use PDO;
 
 
@@ -16,22 +16,10 @@ use PDO;
     protected $id_author;
 
 
-
-
-    // self => la classe dans laquelle est écrit le mot clé "self"
-    // static => la classe courante = la classe depuis laquelle on a appelé la méthode
-    // parent => la classe parente (dont on a hérité)
-    // $this => l'objet courant
-    // &copy; Georges : self c'est la classe où est écrit le code, static c'est la classe qui est en train d'utiliser la méthode
-    
-
-
-
-
     const TABLE_NAME = 'quizzes';
 
 
-
+    // Je veux récupérer tous les quiz
     public static function findAll() : array {
         
         // J'utilise la méthode qui a été héritée (celle du parent)
@@ -40,6 +28,7 @@ use PDO;
         return $quizList;
     }
 
+    // Je veux récupérer les quiz de l'auteur
     public static function findByAuthor(int $id_author) {
        
         $sql = '
@@ -64,6 +53,7 @@ use PDO;
     return $result;
     }
 
+
     public static function findById(int $id) {
         $quizById = parent::findById($id);
      
@@ -71,7 +61,7 @@ use PDO;
     }
 
 
-    // Méthode qui retourne les quiz de l'auteur
+    // Méthode qui signe les quiz par l'id de leur auteur
     public static function findAuthorById(int $id) {
         $sql = '
         SELECT first_name
@@ -89,10 +79,12 @@ use PDO;
         return $result;
     }
 
-    public function findName($id) {
+    // Méthode qui change l'id de l'auteur par son nom
+    public function findAuthorName($id) {
         return self::findAuthorById($id)[0][0];
     }
 
+    // CRUD
     protected function find() : bool {
 
     }

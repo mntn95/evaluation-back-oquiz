@@ -14,10 +14,10 @@ use oQuiz\Utils\User;
 class QuizController extends CoreController {
     public function myAccount($urlParams) {
 
-        // $id_author = $urlParams['id_author'];
-        // Je veux les quiz de mon compte
+        // Je veux les quiz de l'utilisateur
         $quizByAuthorID = QuizModel::findByAuthor($urlParams['id']);
         
+        // J'envoie mes données aux views
         $dataToViews = [
             'quizOfAuthor' => $quizByAuthorID
         ];
@@ -26,21 +26,20 @@ class QuizController extends CoreController {
 
     public function quizDetail($urlParams) {
         $id = $urlParams['id'];
-        // $qId = QuestionModel::getId();
-        // Je veux un quiz depuis son ID
+
+        // Je veux le contenu d'un seul quiz
         $quizById = QuizModel::findById($id);
         $questionByQuizId = QuestionModel::findQuizById($id);
 
         $currentUrl = $_SERVER['REQUEST_URI'];
 
+        // J'envoie mes données aux views
         $dataToViews = [
             'quizOfAuthor' => $quizById,
             'questionsOfQuiz' => $questionByQuizId,
             'url' => $currentUrl,
             'id' => $id
         ];
-
-        
 
         $this->show('front/quiz', $dataToViews);
 

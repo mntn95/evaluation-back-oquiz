@@ -1,3 +1,4 @@
+                <!-- L'utilisateur est connecté, il peut clicker sur les boutons radio et jouer -->
                 <form action="<?= $url ?>" method="POST" class="questionForm" >
                     <div class="form-check">
                     <input class="form-check-input" type="radio" name="choice" value="<?= key($questionsOfQuiz[$key]->getProp1()) ?>">

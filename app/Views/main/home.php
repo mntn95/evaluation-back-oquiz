@@ -11,7 +11,7 @@
         <div class="card-body">
           <h5 class="card-title"><a href="<?= $router->generate('quiz_quizdetail', ['id' =>$currentList->getId()]) ?>"><?= $this->e($currentList->getTitle()) ?></a></h5>
           <h6 class="card-subtitle mb-2 font-weight-bold"><?= $this->e($currentList->getDescription()) ?></h6>
-          <p class="card-text text-muted">by <?=$currentList->findName($currentList->getId())?></p>
+          <p class="card-text text-muted">by <?=$currentList->findAuthorName($currentList->getId())?></p>
         </div>
       </div>
     <?php endforeach; ?>

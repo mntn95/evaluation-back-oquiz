@@ -1,8 +1,8 @@
 <?php
 
-namespace oQuiz\Models; // TODO changer namespace
+namespace oQuiz\Models; 
 
-use oQuiz\Utils\Database; // TODO changer namespace
+use oQuiz\Utils\Database; 
 use PDO;
 
 
@@ -29,15 +29,21 @@ use PDO;
 
     const TABLE_NAME = 'questions';
 
+    // Je crée une méthode qui va gérer les propositions
     public function __construct($shuffledProps=[], $props1='', $props2='', $props3='', $props4='') {
+        // Je crée un array qui va récuperer ces propositions et les stocker
+        // J'indique à l'avance si la réponse est correcte ou fausse
         $props = [
           $props1 = [ 'right'=> $this ->getProp1()],
           $props2 = [ 'wrong'=> $this ->getProp2()],
           $props3 = [ 'wrong'=> $this ->getProp3()],
           $props4 = [ 'wrong'=> $this ->getProp4()]
         ];
+
+        // Je mélange l'array
         shuffle($props);
 
+        // Je les stocke dans leur propriétés respectives, melangées cette fois-ci
         $shuffledProps = [
           $this->prop1 = $props[0],
           $this->prop2 = $props[1],
@@ -45,12 +51,15 @@ use PDO;
           $this->prop4 = $props[3]
         ];
     }
+
+    // Je veux récuperer questions qui ont l'id voulue
     public static function findById(int $id) {
         $questionById = parent::findById($id);
      
         return $questionById;
     }
 
+    // Je veux récupérer les levels en faisant un JOIN
     public static function findLevelById(int $id) {
         $sql = '
         SELECT name
@@ -68,6 +77,7 @@ use PDO;
         return $result;
     }
 
+    // Je veux récuperer les quiz par leur ID
     public static function findQuizById(int $id) {
         $sql = '
         SELECT *
@@ -85,19 +95,12 @@ use PDO;
             $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, static::class);
             return $result;
     }
-    protected function find() : bool {
 
-    }
-
-    protected function insert() : bool {
-
-    }
-    protected function update() : bool {
-
-    }
-    protected function delete() : bool {
-
-    }
+    // CRUD
+    protected function find() : bool {}
+    protected function insert() : bool {}
+    protected function update() : bool {}
+    protected function delete() : bool {}
 
     /**
      * Get the value of id_quiz
