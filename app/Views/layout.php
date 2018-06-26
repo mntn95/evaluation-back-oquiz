@@ -15,7 +15,12 @@
 
     <?= $this->insert('partials/nav') ?>
     <?=$this->section('content')?>
-    
+    <hr>
+    <footer>
+        <div class="copyrights m-4">
+            <p class="text-center"><small>&copy; Copyright 2018 - Mathieu N</small></p>
+        </div>
+    </footer>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script
