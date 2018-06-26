@@ -21,12 +21,13 @@ var app = {
 
     // Au click du bouton OK, je vérifie les réponses
     $('#checkQuiz').on('click', function() {
-
+      window.scrollTo(0, 0);
     // Si la réponse est valide, je change parent en vert
     if (parent.data("answer") == 'right') {
       parent.removeClass('border-primary');
       parent.removeClass('border-warning');
       parent.addClass('border-success');
+      parent.find('.card-header').removeClass('bg-warning');
       parent.find('.card-header').addClass('bg-success');
     }
     
@@ -35,7 +36,9 @@ var app = {
       parent.removeClass('border-dark');
       parent.removeClass('border-success');
       parent.addClass('border-warning');
+      parent.find('.card-header').removeClass('bg-success');
       parent.find('.card-header').addClass('bg-warning');
+
     }
 
     // J'enleve la couleur des levels qui pourraient etre rendus invisibles selon les réponses (jaune sur jaune par ex)
